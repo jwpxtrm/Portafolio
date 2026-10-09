@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.lucide) {
     lucide.createIcons();
   }
-  loadReviews(); // Carga las reseñas guardadas al abrir la página
+  loadReviews(); // Mantiene las reseñas locales por si tienes de prueba
 });
 
 function switchTab(tabId) {
@@ -25,7 +25,7 @@ function switchTab(tabId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Control del Modal (Forzando display para asegurar que se vea)
+// Control del Modal
 function openReviewModal() {
   const modal = document.getElementById("reviewModal");
   if (modal) {
@@ -42,7 +42,7 @@ function closeReviewModal() {
   }
 }
 
-// Cargar reseñas guardadas desde el navegador
+// Cargar reseñas guardadas desde el navegador (opcional)
 function loadReviews() {
   const savedReviews = JSON.parse(localStorage.getItem("portfolio_reviews")) || [];
   const container = document.getElementById("reviewsContainer");
@@ -63,7 +63,7 @@ function loadReviews() {
   });
 }
 
-// Guardar nueva reseña
+// Enviar nueva reseña a Discord mediante Webhook
 function submitReview(event) {
   event.preventDefault();
   
@@ -72,34 +72,42 @@ function submitReview(event) {
   const rating = document.getElementById("ratingInput").value;
   const comment = document.getElementById("commentInput").value;
 
-  const newReview = { author, service, rating, comment };
+  // ⚠️ PEGA TU URL DE WEBHOOK DE DISCORD AQUÍ ENTRE LAS COMILLAS ⚠️
+  const webhookURL = "https://discord.com/api/webhooks/1558184431859007598/y3QvEqZq-ndQNQunwwWF0TAMSSI7M1eRtSnJddg5v6F1KiGpr1eFU23pZixhDyqyKDGA";
 
-  // Guardar en el almacenamiento local (localStorage)
-  const savedReviews = JSON.parse(localStorage.getItem("portfolio_reviews")) || [];
-  savedReviews.unshift(newReview);
-  localStorage.setItem("portfolio_reviews", JSON.stringify(savedReviews));
+  const payload = {
+    embeds: [{
+      title: "⭐ ¡Nueva Reseña en el Portafolio!",
+      color: 8388736, // Color morado
+      fields: [
+        { name: "👤 Autor / Discord", value: author, inline: true },
+        { name: "🛠️ Servicio", value: service, inline: true },
+        { name: "⭐ Calificación", value: rating, inline: false },
+        { name: "💬 Comentario", value: comment, inline: false }
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  };
 
-  // Mostrar la tarjeta en pantalla al instante
-  const reviewCard = document.createElement("div");
-  reviewCard.className = "review-card";
-  reviewCard.innerHTML = `
-    <div class="review-stars">${rating}</div>
-    <p class="review-text">"${comment}"</p>
-    <div class="review-author">
-      <strong>${author}</strong>
-      <span>Servicio: ${service}</span>
-    </div>
-  `;
-
-  const container = document.getElementById("reviewsContainer");
-  if (container) {
-    container.prepend(reviewCard);
-  }
-
-  document.getElementById("reviewForm").reset();
-  closeReviewModal();
-
-  showToast("¡Reseña publicada con éxito!");
+  // Enviar los datos al Webhook de Discord
+  fetch(webhookURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (response.ok) {
+      showToast("¡Reseña enviada con éxito a Discord!");
+      document.getElementById("reviewForm").reset();
+      closeReviewModal();
+    } else {
+      showToast("Hubo un error al enviar la reseña.");
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    showToast("Error de conexión con Discord.");
+  });
 }
 
 function copyDiscord() {
