@@ -1,14 +1,13 @@
 :root {
   --primary: #f97316;
   --secondary: #ec4899;
-  --bg-dark: #0f0907;       /* Fondo oscuro con un tono cálido sutil (nada de azul o verde) */
-  --card-bg: #19100d;       /* Fondo de las tarjetas con un toque cálido */
+  --bg-dark: #0f0907;
+  --card-bg: #19100d;
   --text-main: #f8fafc;
 }
 
 body {
   background-color: var(--bg-dark);
-  /* Un brillo ambiental suave en las esquinas que hace juego exacto con el naranja y fucsia */
   background-image: radial-gradient(circle at 15% 15%, rgba(249, 115, 22, 0.12) 0%, transparent 45%),
                     radial-gradient(circle at 85% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%);
   background-attachment: fixed;
@@ -16,4 +15,16 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+  color: #ffffff;
+  border: none;
 }
