@@ -297,7 +297,107 @@
 
   <div id="toast" class="toast">¡Texto copiado al portapapeles!</div>
 
-  <!-- AQUÍ ESTÁ EL CAMBIO CLAVE (type="module") -->
-  <script type="module" src="script.js"></script>
+  <!-- 1. Script de Interfaz y Navegación (Estándar) -->
+  <script src="script.js"></script>
+
+  <!-- 2. Script de Firebase y Reseñas en Vivo (Módulo) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYmEGKfyMCfINPS0S9kuSjYZozxGHcWgE",
+      authDomain: "portafolio-jwpxtrm.firebaseapp.com",
+      projectId: "portafolio-jwpxtrm",
+      storageBucket: "portafolio-jwpxtrm.firebasestorage.app",
+      messagingSenderId: "578916510239",
+      appId: "1:578916510239:web:667290cafde6882d8e432a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const webhookURL = "TU_WEBHOOK_URL_DE_DISCORD"; // Reemplaza aquí con tu webhook si ya lo tienes
+
+    window.submitReview = async function(event) {
+      event.preventDefault();
+      
+      const author = document.getElementById("authorInput").value;
+      const service = document.getElementById("serviceInput").value;
+      const rating = document.getElementById("ratingInput").value;
+      const comment = document.getElementById("commentInput").value;
+
+      try {
+        await addDoc(collection(db, "reviews"), {
+          name: author,
+          service: service,
+          rating: rating,
+          comment: comment,
+          date: new Date().toISOString()
+        });
+
+        if (webhookURL && webhookURL !== "TU_WEBHOOK_URL_DE_DISCORD") {
+          await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              content: `⭐ **Nueva Reseña Recibida**\n👤 **Autor:** ${author}\n🛠️ **Servicio:** ${service}\n🌟 **Calificación:** ${rating}\n💬 **Comentario:** ${comment}`
+            })
+          });
+        }
+
+        alert("¡Reseña publicada con éxito!");
+        document.getElementById("reviewForm").reset();
+        closeReviewModal();
+        loadReviews();
+      } catch (error) {
+        console.error("Error al enviar reseña:", error);
+        alert("Hubo un error al enviar la reseña.");
+      }
+    };
+
+    async function loadReviews() {
+      const container = document.getElementById("reviewsContainer");
+      if (!container) return;
+
+      container.innerHTML = "<p>Cargando reseñas...</p>";
+
+      try {
+        const q = query(collection(db, "reviews"), orderBy("date", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        container.innerHTML = "";
+        if (querySnapshot.empty) {
+          container.innerHTML = "<p class='no-reviews'>No hay reseñas todavía. ¡Sé el primero en dejar una!</p>";
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const card = document.createElement("div");
+          card.className = "review-card";
+          card.innerHTML = `
+            <div class="review-header-card">
+              <h4>${escapeHtml(data.name)}</h4>
+              <span class="review-stars">${data.rating}</span>
+            </div>
+            <p class="review-service">Servicio: <strong>${escapeHtml(data.service)}</strong></p>
+            <p class="review-text">"${escapeHtml(data.comment)}"</p>
+            <small class="review-date">${new Date(data.date).toLocaleDateString()}</small>
+          `;
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error("Error al cargar reseñas:", error);
+        container.innerHTML = "<p>Error al cargar las reseñas.</p>";
+      }
+    }
+
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    document.addEventListener("DOMContentLoaded", loadReviews);
+  </script>
 </body>
-  </html>
+          </html>
