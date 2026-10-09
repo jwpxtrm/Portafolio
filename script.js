@@ -25,11 +25,11 @@ function switchTab(tabId) {
 }
 
 function openReviewModal() {
-  document.getElementById("reviewModal").classList.add("open");
+  document.getElementById("reviewModal").classList.add("active");
 }
 
 function closeReviewModal() {
-  document.getElementById("reviewModal").classList.remove("open");
+  document.getElementById("reviewModal").classList.remove("active");
 }
 
 function submitReview(event) {
