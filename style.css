@@ -215,4 +215,4 @@ body {
   .bento-grid { grid-template-columns: 1fr; }
   .card-large, .card-small { grid-column: span 1; }
   .action-banner { flex-direction: column; text-align: center; }
-    }
+  }
