@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio | Servidores, Bots & Desarrollo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Fondos dinámicos -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Navegación por Categorías -->
+  <header class="navbar">
+    <a href="#" class="brand" onclick="switchTab('inicio')">
+      <span class="brand-badge">&lt;/&gt;</span>
+      <span class="brand-name">TU_NOMBRE</span>
+    </a>
+    <nav class="nav-menu">
+      <button class="nav-btn active" data-tab="inicio" onclick="switchTab('inicio')">Inicio</button>
+      <button class="nav-btn" data-tab="sobre-mi" onclick="switchTab('sobre-mi')">Sobre mí</button>
+      <button class="nav-btn" data-tab="servidores" onclick="switchTab('servidores')">Servidores / Proyectos</button>
+      <button class="nav-btn" data-tab="resenas" onclick="switchTab('resenas')">Reseñas</button>
+      <button class="nav-btn" data-tab="estudio" onclick="switchTab('estudio')">Estudio</button>
+      <button class="nav-btn btn-highlight" data-tab="contacto" onclick="switchTab('contacto')">Contacto</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- CATEGORÍA: INICIO -->
+    <section id="inicio" class="tab-content active">
+      <div class="hero-section">
+        <div class="status-badge">
+          <span class="pulse-dot"></span> Sistemas & Infraestructura Activa
+        </div>
+        <h1 class="hero-title">
+          Especialista en <span class="gradient-text">Servidores de Minecraft</span> & Bots de Discord.
+        </h1>
+        <p class="hero-subtitle">
+          Configuración, optimización de redes, desarrollo de plugins y bots personalizados.
+        </p>
+
+        <div class="categories-grid">
+          <div class="category-card" onclick="switchTab('sobre-mi')">
+            <i data-lucide="user" class="cat-icon"></i>
+            <h3>Sobre Mí</h3>
+            <p>Conoce mi trayectoria, años de experiencia y tecnologías que domino.</p>
+          </div>
+
+          <div class="category-card" onclick="switchTab('servidores')">
+            <i data-lucide="server" class="cat-icon"></i>
+            <h3>Servidores & Redes</h3>
+            <p>Lista de redes de Minecraft en las que he trabajado como Developer o Staff.</p>
+          </div>
+
+          <div class="category-card" onclick="switchTab('resenas')">
+            <i data-lucide="star" class="cat-icon"></i>
+            <h3>Reseñas de Clientes</h3>
+            <p>Lee los comentarios de quienes me han contratado o deja tu reseña.</p>
+          </div>
+
+          <div class="category-card" onclick="switchTab('estudio')">
+            <i data-lucide="boxes" class="cat-icon"></i>
+            <h3>Mi Estudio</h3>
+            <p>Servicios de desarrollo profesional, ventas y soporte de mi equipo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: SOBRE MÍ -->
+    <section id="sobre-mi" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Perfil</span>
+        <h2>Hola, soy <span class="gradient-text">TU_NOMBRE</span></h2>
+        <p class="section-desc">Llevo varios años desarrollando y gestionando comunidades gamer e infraestructura de servidores.</p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card card-large">
+          <h3>Trayectoria & Experiencia</h3>
+          <ul class="timeline">
+            <li>
+              <span class="timeline-year">Inicio</span>
+              <strong>Primeros pasos:</strong> Aprendí a programar configurando mis primeros servidores de Minecraft y creando bots básicos.
+            </li>
+            <li>
+              <span class="timeline-year">Crecimiento</span>
+              <strong>Desarrollo de Redes:</strong> Trabajé como developer y sysadmin en múltiples networks gestionando proxies y seguridad.
+            </li>
+            <li>
+              <span class="timeline-year">Actualidad</span>
+              <strong>Desarrollador & Creador:</strong> Ofrezco servicios independientes de configuración, bots de Discord en Python/Node y plugins.
+            </li>
+          </ul>
+        </div>
+
+        <div class="bento-card card-small">
+          <h3>Habilidades</h3>
+          <div class="tech-stack">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">PaperMC</span>
+            <span class="tech-pill">Discord.py</span>
+            <span class="tech-pill">BungeeCord / Velocity</span>
+            <span class="tech-pill">HTML / CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: SERVIDORES / PROYECTOS -->
+    <section id="servidores" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Portafolio</span>
+        <h2>Redes & Servidores en los que he trabajado</h2>
+        <p class="section-desc">Desde founder hasta desarrollador técnico y configurador de seguridad.</p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="server" class="project-icon"></i>
+            <span class="status-pill status-online">Abierto</span>
+          </div>
+          <h3>VisionMC Network</h3>
+          <p class="project-role">Rango: Developer</p>
+          <p class="project-desc">Configuración general de modalidades, optimización de lag y sistemas de protección anticheat / ScreenShare.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="gamepad-2" class="project-icon"></i>
+            <span class="status-pill status-closed">Cerrado</span>
+          </div>
+          <h3>Bluven Network</h3>
+          <p class="project-role">Rango: Founder</p>
+          <p class="project-desc">Red propia en la que configuré el lobby principal, sistema de recompensas, tabulador y bots integrados.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="shield-check" class="project-icon"></i>
+            <span class="status-pill status-dev">En Desarrollo</span>
+          </div>
+          <h3>VirexMC Network</h3>
+          <p class="project-role">Rango: Administrador Técnico</p>
+          <p class="project-desc">Organización interna del staff, configuración de proxies de red y vinculación con Discord.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: RESEÑAS -->
+    <section id="resenas" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Opiniones</span>
+        <h2>Lo que dicen <span class="gradient-text">quienes me contrataron</span></h2>
+        <p class="section-desc">Valoraciones de clientes sobre configuraciones, plugins y bots entregados.</p>
+      </div>
+
+      <!-- Tarjeta especial para dejar reseña -->
+      <div class="action-banner">
+        <div class="action-info">
+          <h3>¿Trabajaste conmigo o te presté un servicio?</h3>
+          <p>Tu opinión es importante para seguir mejorando y brindar confianza a nuevos clientes.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openReviewModal()">
+          <i data-lucide="edit-3"></i> Dejar una reseña
+        </button>
+      </div>
+
+      <!-- Grid de Reseñas -->
+      <div class="reviews-grid" id="reviewsContainer">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Excelente trabajo con la configuración del bot de tickets y alertas. Entrega super rápida y atento a las correcciones."</p>
+          <div class="review-author">
+            <strong>Cliente #1</strong>
+            <span>Servicio: Bot de Discord</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Me ayudó a optimizar la red de Minecraft que tenía problemas de TPS. Quedó súper fluido todo."</p>
+          <div class="review-author">
+            <strong>Cliente #2</strong>
+            <span>Servicio: Optimización de Servidor</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: ESTUDIO -->
+    <section id="estudio" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Mi Estudio</span>
+        <h2>JaxCore Studios</h2>
+        <p class="section-desc">Programación, diseño y optimización profesional para comunidades.</p>
+      </div>
+
+      <div class="bento-card studio-hero-card">
+        <i data-lucide="cpu" class="studio-logo-icon"></i>
+        <h3>Servicios de JaxCore Studios</h3>
+        <p>Aparte de mi trabajo personal, dirijo mi propio equipo enfocado en brindar soluciones completas.</p>
+
+        <div class="services-list">
+          <div class="service-tag"><i data-lucide="check"></i> Plugins a medida</div>
+          <div class="service-tag"><i data-lucide="check"></i> Bots de Discord personalizados</div>
+          <div class="service-tag"><i data-lucide="check"></i> Configuraciones de Redes</div>
+          <div class="service-tag"><i data-lucide="check"></i> Optimización de JVM y TPS</div>
+        </div>
+
+        <div class="studio-action">
+          <button class="btn btn-primary" onclick="switchTab('contacto')">
+            <i data-lucide="message-square"></i> Cotizar Servicio
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: CONTACTO -->
+    <section id="contacto" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Contacto</span>
+        <h2>Hablemos por <span class="gradient-text">Discord</span></h2>
+        <p class="section-desc">Para proyectos, configuraciones o cualquier duda, contáctame directamente.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="bento-card contact-box">
+          <i data-lucide="user-check" class="contact-icon"></i>
+          <h3>Discord Personal</h3>
+          <p>Para hablar directamente conmigo sobre pedidos personales.</p>
+          <div class="copy-field">
+            <span id="discordUser">tu_usuario_discord</span>
+            <button class="btn btn-copy" onclick="copyDiscord()">
+              <i data-lucide="copy"></i> Copiar
+            </button>
+          </div>
+        </div>
+
+        <div class="bento-card contact-box">
+          <i data-lucide="users" class="contact-icon"></i>
+          <h3>Servidor del Estudio</h3>
+          <p>Para abrir tickets, ver el catálogo de servicios y recibir soporte técnico.</p>
+          <a href="https://discord.gg/" target="_blank" class="btn btn-secondary mt-2">
+            <i data-lucide="external-link"></i> Entrar al Servidor
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: DEJAR RESEÑA -->
+  <div id="reviewModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="message-square-plus"></i> Dejar una Reseña</h3>
+        <button class="modal-close" onclick="closeReviewModal()">&times;</button>
+      </div>
+      <form id="reviewForm" onsubmit="submitReview(event)">
+        <div class="form-group">
+          <label>Tu Nombre / Usuario de Discord:</label>
+          <input type="text" id="authorInput" placeholder="Ej: JasielDev" required>
+        </div>
+
+        <div class="form-group">
+          <label>Servicio Contratado:</label>
+          <input type="text" id="serviceInput" placeholder="Ej: Bot de Discord / Configuración de Minecraft" required>
+        </div>
+
+        <div class="form-group">
+          <label>Calificación:</label>
+          <select id="ratingInput">
+            <option value="★★★★★">★★★★★ (5 Estrellas)</option>
+            <option value="★★★★☆">★★★★☆ (4 Estrellas)</option>
+            <option value="★★★☆☆">★★★☆☆ (3 Estrellas)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tu Comentario:</label>
+          <textarea id="commentInput" rows="3" placeholder="Escribe aquí tu experiencia..." required></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Publicar Reseña</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 TU_NOMBRE. Todos los derechos reservados.</p>
+  </footer>
+
+  <div id="toast" class="toast">¡Texto copiado al portapapeles!</div>
+
+  <script src="script.js"></script>
+</body>
+        </html>
