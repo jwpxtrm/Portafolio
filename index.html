@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio Personal | Developer & System Specialist</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <a href="#" class="brand">
+      <span class="brand-badge">&lt;/&gt;</span>
+      <span class="brand-name">TU_NOMBRE</span>
+    </a>
+    <nav class="nav-menu">
+      <a href="#inicio" class="nav-link active">Inicio</a>
+      <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
+      <a href="#proyectos" class="nav-link">Proyectos</a>
+      <a href="#contacto" class="nav-link btn-nav">Contactar</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+      <div class="status-badge">
+        <span class="pulse-dot"></span> Disponible para nuevos proyectos
+      </div>
+      <h1 class="hero-title">
+        Diseñando el futuro de <span class="gradient-text">servidores & bots</span> con código de alto rendimiento.
+      </h1>
+      <p class="hero-subtitle">
+        Desarrollador enfocado en arquitectura de servidores de Minecraft, automatizaciones de Discord y soluciones web a medida.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary">
+          <i data-lucide="message-square"></i> Hablar por Discord
+        </a>
+        <a href="#proyectos" class="btn btn-secondary">
+          <i data-lucide="folder-git-2"></i> Ver Trabajos
+        </a>
+      </div>
+    </section>
+
+    <!-- Bento Grid -->
+    <section id="sobre-mi" class="bento-grid">
+      <!-- Card 1: Biografía -->
+      <div class="bento-card card-large">
+        <div class="card-header">
+          <i data-lucide="user" class="card-icon"></i>
+          <span class="card-tag">Biografía</span>
+        </div>
+        <h3>Especialista en Infraestructura & Desarrollo</h3>
+        <p>
+          Llevo años optimizando servidores de alto tráfico, programando sistemas personalizados en Java y Python, y creando integraciones fluidas con Discord.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-pill"><i data-lucide="code-2"></i> Java</span>
+          <span class="tech-pill"><i data-lucide="terminal"></i> Python</span>
+          <span class="tech-pill"><i data-lucide="file-code-2"></i> Node.js</span>
+          <span class="tech-pill"><i data-lucide="cpu"></i> Minecraft API</span>
+          <span class="tech-pill"><i data-lucide="bot"></i> Discord.js</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Estadísticas -->
+      <div class="bento-card card-small stats-card">
+        <div class="stat-item">
+          <span class="stat-number">4+</span>
+          <span class="stat-label">Años de Exp.</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">Uptime Servidores</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Terminal Simulada -->
+      <div class="bento-card card-medium terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-title">status.sh</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> systemctl status my-services</p>
+          <p class="log-ok">● Bot_Core.service - Active (running)</p>
+          <p class="log-ok">● PaperMC_Cluster.service - Active (running)</p>
+          <p><span class="prompt">$</span> echo "¡Listo para crear tu proyecto!"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="section-padding">
+      <div class="section-header">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <p class="section-desc">Sistemas desarrollados, optimizados y mantenidos en producción.</p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-banner">
+            <span class="status-pill status-online">En Vivo</span>
+          </div>
+          <div class="project-content">
+            <h3>VisionMC Network</h3>
+            <p class="project-role">Desarrollador Principal</p>
+            <p>Configuración de modalidades competitivas, optimización de JVM y parches de seguridad.</p>
+            <div class="project-tags">
+              <span>Java</span><span>PaperMC</span><span>Redis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-banner">
+            <span class="status-pill status-dev">En Desarrollo</span>
+          </div>
+          <div class="project-content">
+            <h3>Bot Studio Core</h3>
+            <p class="project-role">Founder & Developer</p>
+            <p>Bot multifuncional de verificación, tickets y moderación automatizada para comunidades.</p>
+            <div class="project-tags">
+              <span>Node.js</span><span>SQLite</span><span>Discord.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contacto-section">
+      <div class="bento-card contact-card">
+        <div class="card-header">
+          <i data-lucide="radio" class="card-icon"></i>
+          <span class="card-tag">Contacto Directo</span>
+        </div>
+        <h2>¿Tienes un proyecto en mente?</h2>
+        <p>Escríbeme directamente por Discord para coordinar la configuración o desarrollo de tu idea.</p>
+        
+        <div class="discord-copy-box">
+          <span class="discord-username" id="discordTag">tu_usuario_discord</span>
+          <button class="btn btn-copy" onclick="copyDiscord()">
+            <i data-lucide="copy" id="copyIcon"></i>
+            <span id="copyText">Copiar usuario</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 TU_NOMBRE. Todos los derechos reservados.</p>
+  </footer>
+
+  <div id="toast" class="toast">¡Usuario copiado al portapapeles!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
