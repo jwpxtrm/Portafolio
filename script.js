@@ -1,128 +1,104 @@
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.lucide) {
-    lucide.createIcons();
-  }
-  loadReviews(); // Mantiene las reseñas locales por si tienes de prueba
-});
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
-function switchTab(tabId) {
-  const tabs = document.querySelectorAll(".tab-content");
-  tabs.forEach(tab => tab.classList.remove("active"));
+// Configuración de Firebase integrada
+const firebaseConfig = {
+  apiKey: "AIzaSyCYmEGKfyMCfINPS0S9kuSjYZozxGHcWgE",
+  authDomain: "portafolio-jwpxtrm.firebaseapp.com",
+  projectId: "portafolio-jwpxtrm",
+  storageBucket: "portafolio-jwpxtrm.firebasestorage.app",
+  messagingSenderId: "578916510239",
+  appId: "1:578916510239:web:667290cafde6882d8e432a"
+};
 
-  const navBtns = document.querySelectorAll(".nav-btn");
-  navBtns.forEach(btn => btn.classList.remove("active"));
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  const activeTab = document.getElementById(tabId);
-  if (activeTab) {
-    activeTab.classList.add("active");
-  }
+// ¡No olvides poner aquí la URL de tu Webhook de Discord!
+const webhookURL = "TU_WEBHOOK_URL_DE_DISCORD";
 
-  const activeBtn = document.querySelector(`.nav-btn[data-tab="${tabId}"]`);
-  if (activeBtn) {
-    activeBtn.classList.add("active");
-  }
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Control del Modal
-function openReviewModal() {
-  const modal = document.getElementById("reviewModal");
-  if (modal) {
-    modal.style.display = "flex";
-    modal.classList.add("active");
-  }
-}
-
-function closeReviewModal() {
-  const modal = document.getElementById("reviewModal");
-  if (modal) {
-    modal.style.display = "none";
-    modal.classList.remove("active");
-  }
-}
-
-// Cargar reseñas guardadas desde el navegador (opcional)
-function loadReviews() {
-  const savedReviews = JSON.parse(localStorage.getItem("portfolio_reviews")) || [];
-  const container = document.getElementById("reviewsContainer");
-  if (!container) return;
-
-  savedReviews.forEach(rev => {
-    const reviewCard = document.createElement("div");
-    reviewCard.className = "review-card";
-    reviewCard.innerHTML = `
-      <div class="review-stars">${rev.rating}</div>
-      <p class="review-text">"${rev.comment}"</p>
-      <div class="review-author">
-        <strong>${rev.author}</strong>
-        <span>Servicio: ${rev.service}</span>
-      </div>
-    `;
-    container.prepend(reviewCard);
-  });
-}
-
-// Enviar nueva reseña a Discord mediante Webhook
-function submitReview(event) {
+// Función para enviar reseña
+window.submitReview = async function(event) {
   event.preventDefault();
   
-  const author = document.getElementById("authorInput").value;
-  const service = document.getElementById("serviceInput").value;
-  const rating = document.getElementById("ratingInput").value;
-  const comment = document.getElementById("commentInput").value;
+  const name = document.getElementById("review-name").value;
+  const comment = document.getElementById("review-comment").value;
+  const rating = document.getElementById("review-rating").value;
 
-  // ⚠️ PEGA TU URL DE WEBHOOK DE DISCORD AQUÍ ENTRE LAS COMILLAS ⚠️
-  const webhookURL = "https://discord.com/api/webhooks/1558184431859007598/y3QvEqZq-ndQNQunwwWF0TAMSSI7M1eRtSnJddg5v6F1KiGpr1eFU23pZixhDyqyKDGA";
+  try {
+    // Guardar en Firebase Firestore
+    await addDoc(collection(db, "reviews"), {
+      name: name,
+      comment: comment,
+      rating: Number(rating),
+      date: new Date().toISOString()
+    });
 
-  const payload = {
-    embeds: [{
-      title: "⭐ ¡Nueva Reseña en el Portafolio!",
-      color: 8388736, // Color morado
-      fields: [
-        { name: "👤 Autor / Discord", value: author, inline: true },
-        { name: "🛠️ Servicio", value: service, inline: true },
-        { name: "⭐ Calificación", value: rating, inline: false },
-        { name: "💬 Comentario", value: comment, inline: false }
-      ],
-      timestamp: new Date().toISOString()
-    }]
-  };
-
-  // Enviar los datos al Webhook de Discord
-  fetch(webhookURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  })
-  .then(response => {
-    if (response.ok) {
-      showToast("¡Reseña enviada con éxito a Discord!");
-      document.getElementById("reviewForm").reset();
-      closeReviewModal();
-    } else {
-      showToast("Hubo un error al enviar la reseña.");
+    // Enviar notificación al Webhook de Discord
+    if (webhookURL !== "TU_WEBHOOK_URL_DE_DISCORD") {
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `⭐ **Nueva Reseña Recibida**\n👤 **Nombre:** ${name}\n💬 **Comentario:** ${comment}\n🌟 **Calificación:** ${rating}/5`
+        })
+      });
     }
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    showToast("Error de conexión con Discord.");
-  });
+
+    alert("¡Reseña enviada con éxito!");
+    document.getElementById("review-form").reset();
+    loadReviews();
+  } catch (error) {
+    console.error("Error al enviar la reseña:", error);
+    alert("Hubo un error al enviar la reseña. Revisa la consola.");
+  }
+};
+
+// Función para cargar las reseñas dinámicamente desde Firestore
+async function loadReviews() {
+  const container = document.getElementById("reviews-container");
+  if (!container) return;
+
+  container.innerHTML = "Cargando reseñas...";
+
+  try {
+    const q = query(collection(db, "reviews"), orderBy("date", "desc"));
+    const querySnapshot = await getDocs(q);
+    
+    container.innerHTML = "";
+    if (querySnapshot.empty) {
+      container.innerHTML = "<p>No hay reseñas todavía. ¡Sé el primero en dejar una!</p>";
+      return;
+    }
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const reviewCard = document.createElement("div");
+      reviewCard.className = "review-card";
+      reviewCard.innerHTML = `
+        <h4>${escapeHtml(data.name)}</h4>
+        <p>⭐ ${data.rating}/5</p>
+        <p>${escapeHtml(data.comment)}</p>
+        <small>${new Date(data.date).toLocaleDateString()}</small>
+      `;
+      container.appendChild(reviewCard);
+    });
+  } catch (error) {
+    console.error("Error al cargar reseñas:", error);
+    container.innerHTML = "<p>Error al cargar las reseñas.</p>";
+  }
 }
 
-function copyDiscord() {
-  const user = document.getElementById("discordUser").innerText;
-  navigator.clipboard.writeText(user).then(() => {
-    showToast("¡Usuario de Discord copiado!");
-  });
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
 }
 
-function showToast(msg) {
-  const toast = document.getElementById("toast");
-  if (!toast) return;
-  toast.innerText = msg;
-  toast.classList.add("show");
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2500);
-}
+document.addEventListener("DOMContentLoaded", loadReviews);
