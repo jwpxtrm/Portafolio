@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ¡No olvides poner aquí la URL de tu Webhook de Discord!
-const webhookURL = "TU_WEBHOOK_URL_DE_DISCORD";
+const webhookURL = "https://discord.com/api/webhooks/1558184431859007598/y3QvEqZq-ndQNQunwwWF0TAMSSI7M1eRtSnJddg5v6F1KiGpr1eFU23pZixhDyqyKDGA";
 
 // Función para enviar reseña
 window.submitReview = async function(event) {
