@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.lucide) {
     lucide.createIcons();
   }
+  loadReviews(); // Carga las reseñas guardadas al abrir la página
 });
 
 function switchTab(tabId) {
@@ -24,14 +25,45 @@ function switchTab(tabId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Control del Modal (Forzando display para asegurar que se vea)
 function openReviewModal() {
-  document.getElementById("reviewModal").classList.add("active");
+  const modal = document.getElementById("reviewModal");
+  if (modal) {
+    modal.style.display = "flex";
+    modal.classList.add("active");
+  }
 }
 
 function closeReviewModal() {
-  document.getElementById("reviewModal").classList.remove("active");
+  const modal = document.getElementById("reviewModal");
+  if (modal) {
+    modal.style.display = "none";
+    modal.classList.remove("active");
+  }
 }
 
+// Cargar reseñas guardadas desde el navegador
+function loadReviews() {
+  const savedReviews = JSON.parse(localStorage.getItem("portfolio_reviews")) || [];
+  const container = document.getElementById("reviewsContainer");
+  if (!container) return;
+
+  savedReviews.forEach(rev => {
+    const reviewCard = document.createElement("div");
+    reviewCard.className = "review-card";
+    reviewCard.innerHTML = `
+      <div class="review-stars">${rev.rating}</div>
+      <p class="review-text">"${rev.comment}"</p>
+      <div class="review-author">
+        <strong>${rev.author}</strong>
+        <span>Servicio: ${rev.service}</span>
+      </div>
+    `;
+    container.prepend(reviewCard);
+  });
+}
+
+// Guardar nueva reseña
 function submitReview(event) {
   event.preventDefault();
   
@@ -40,6 +72,14 @@ function submitReview(event) {
   const rating = document.getElementById("ratingInput").value;
   const comment = document.getElementById("commentInput").value;
 
+  const newReview = { author, service, rating, comment };
+
+  // Guardar en el almacenamiento local (localStorage)
+  const savedReviews = JSON.parse(localStorage.getItem("portfolio_reviews")) || [];
+  savedReviews.unshift(newReview);
+  localStorage.setItem("portfolio_reviews", JSON.stringify(savedReviews));
+
+  // Mostrar la tarjeta en pantalla al instante
   const reviewCard = document.createElement("div");
   reviewCard.className = "review-card";
   reviewCard.innerHTML = `
@@ -52,7 +92,9 @@ function submitReview(event) {
   `;
 
   const container = document.getElementById("reviewsContainer");
-  container.prepend(reviewCard);
+  if (container) {
+    container.prepend(reviewCard);
+  }
 
   document.getElementById("reviewForm").reset();
   closeReviewModal();
@@ -69,6 +111,7 @@ function copyDiscord() {
 
 function showToast(msg) {
   const toast = document.getElementById("toast");
+  if (!toast) return;
   toast.innerText = msg;
   toast.classList.add("show");
   setTimeout(() => {
