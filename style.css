@@ -85,8 +85,9 @@ body {
 .section-desc { color: var(--text-muted); font-size: 0.95rem; }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-section { text-align: center; padding: 3rem 0 1rem; }
