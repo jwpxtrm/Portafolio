@@ -414,9 +414,28 @@ body {
   gap: 1.5rem;
 }
 
+.review-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+
+.review-header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
 .review-stars {
   color: #fbbf24;
   letter-spacing: 2px;
+}
+
+.review-service {
+  font-size: 0.85rem;
+  color: var(--primary);
   margin-bottom: 0.75rem;
 }
 
@@ -428,14 +447,9 @@ body {
   line-height: 1.4;
 }
 
-.review-author {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.85rem;
-}
-
-.review-author span {
+.review-date {
   color: var(--text-muted);
+  font-size: 0.8rem;
 }
 
 /* Estudio */
@@ -556,21 +570,27 @@ body {
   margin-top: 1rem;
 }
 
-/* Modal y Toast */
+/* Modal y Animación */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 1000;
   padding: 1rem;
 }
 
-.modal-overlay.active {
-  display: flex;
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .modal-card {
@@ -578,8 +598,16 @@ body {
   border: 1px solid var(--card-border);
   border-radius: 16px;
   width: 100%;
-  max-width: 450px;
+  max-width: 480px;
   padding: 2rem;
+  color: var(--text-main);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.modal-overlay.show .modal-card {
+  transform: translateY(0);
 }
 
 .modal-header {
@@ -597,18 +625,25 @@ body {
   cursor: pointer;
 }
 
+.modal-close:hover {
+  color: var(--text-main);
+}
+
 .form-group {
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .form-group label {
-  display: block;
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin-bottom: 0.35rem;
 }
 
-.form-group input, .form-group select, .form-group textarea {
+.form-group input, 
+.form-group select, 
+.form-group textarea {
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--card-border);
@@ -616,6 +651,14 @@ body {
   border-radius: 8px;
   color: var(--text-main);
   font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 .modal-actions {
@@ -625,6 +668,7 @@ body {
   margin-top: 1.5rem;
 }
 
+/* Toast */
 .toast {
   position: fixed;
   bottom: 2rem;
@@ -634,7 +678,7 @@ body {
   color: var(--text-main);
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   display: none;
   z-index: 1000;
 }
@@ -652,101 +696,4 @@ body {
   font-size: 0.85rem;
   background: rgba(13, 11, 12, 0.5);
   margin-top: 4rem;
-}
-
-/* Estilos para el Modal de Reseñas */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1000;
-}
-
-/* Esta clase es la que activa el JavaScript cuando haces clic en el botón */
-.modal-overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-card {
-  background: #121214;
-  border: 1px solid #27272a;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 500px;
-  padding: 24px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-  color: #fff;
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
-}
-
-.modal-overlay.show .modal-card {
-  transform: translateY(0);
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  color: #a1a1aa;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  color: #fff;
-}
-
-.form-group {
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.form-group label {
-  font-size: 14px;
-  color: #d4d4d8;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  background: #18181b;
-  border: 1px solid #27272a;
-  border-radius: 8px;
-  padding: 10px 12px;
-  color: #fff;
-  font-size: 14px;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #6366f1;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
-  }
+    }
