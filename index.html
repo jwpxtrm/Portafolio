@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio | Servidores, Bots & Desarrollo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Fondos dinámicos -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Navegación por Categorías -->
+  <header class="navbar">
+    <a href="#" class="brand" onclick="switchTab('inicio')">
+      <span class="brand-badge">&lt;/&gt;</span>
+      <span class="brand-name">jwpXtrm</span>
+    </a>
+    <nav class="nav-menu">
+      <button class="nav-btn active" data-tab="inicio" onclick="switchTab('inicio')">Inicio</button>
+      <button class="nav-btn" data-tab="sobre-mi" onclick="switchTab('sobre-mi')">Sobre mí</button>
+      <button class="nav-btn" data-tab="servidores" onclick="switchTab('servidores')">Servidores / Proyectos</button>
+      <button class="nav-btn" data-tab="resenas" onclick="switchTab('resenas')">Reseñas</button>
+      <button class="nav-btn" data-tab="estudio" onclick="switchTab('estudio')">Estudio</button>
+      <button class="nav-btn btn-highlight" data-tab="contacto" onclick="switchTab('contacto')">Contacto</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- CATEGORÍA: INICIO -->
+    <section id="inicio" class="tab-content active">
+      <div class="hero-section">
+        <div class="status-badge">
+          <span class="pulse-dot"></span> Sistemas & Infraestructura Activa
+        </div>
+        <h1 class="hero-title">
+          Especialista en <span class="gradient-text">Servidores de Minecraft</span> & Bots de Discord.
+        </h1>
+        <p class="hero-subtitle">
+          Configuración, optimización de redes, desarrollo de plugins y bots personalizados.
+        </p>
+
+        <div class="categories-grid">
+          <div class="category-card" onclick="switchTab('sobre-mi')">
+            <i data-lucide="user" class="cat-icon"></i>
+            <h3>Sobre Mí</h3>
+            <p>Conoce mi trayectoria, años de experiencia y tecnologías que domino.</p>
+          </div>
+
+          <div class="category-card" onclick="switchTab('servidores')">
+            <i data-lucide="server" class="cat-icon"></i>
+            <h3>Servidores & Redes</h3>
+            <p>Lista de redes de Minecraft en las que he trabajado como Developer o Staff.</p>
+          </div>
+
+          <div class="category-card" onclick="switchTab('resenas')">
+            <i data-lucide="star" class="cat-icon"></i>
+            <h3>Reseñas de Clientes</h3>
+            <p>Lee los comentarios de quienes me han contratado o deja tu reseña.</p>
+          </div>
+
+          <div class="category-card" onclick="switchTab('estudio')">
+            <i data-lucide="boxes" class="cat-icon"></i>
+            <h3>Mi Estudio</h3>
+            <p>Servicios de desarrollo profesional, ventas y soporte de mi equipo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: SOBRE MÍ -->
+    <section id="sobre-mi" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Perfil</span>
+        <h2>Hola, soy <span class="gradient-text">JwpXtrm</span></h2>
+        <p class="section-desc">Llevo varios años desarrollando y gestionando comunidades gamer e infraestructura de servidores.</p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card card-large">
+          <h3>Trayectoria & Experiencia</h3>
+          <ul class="timeline">
+            <li>
+              <span class="timeline-year">Inicio</span>
+              <strong>Primeros pasos:</strong> Aprendí a programar configurando mis primeros servidores de Minecraft y creando bots básicos.
+            </li>
+            <li>
+              <span class="timeline-year">Crecimiento</span>
+              <strong>Desarrollo de Redes:</strong> Trabajé como developer y sysadmin en múltiples networks gestionando proxies y seguridad.
+            </li>
+            <li>
+              <span class="timeline-year">Actualidad</span>
+              <strong>Desarrollador & Creador:</strong> Ofrezco servicios independientes de configuración, bots de Discord en Python/Node y plugins.
+            </li>
+          </ul>
+        </div>
+
+        <div class="bento-card card-small">
+          <h3>Habilidades</h3>
+          <div class="tech-stack">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">PaperMC</span>
+            <span class="tech-pill">Discord.py</span>
+            <span class="tech-pill">BungeeCord / Velocity</span>
+            <span class="tech-pill">HTML / CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: SERVIDORES / PROYECTOS -->
+    <section id="servidores" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Portafolio</span>
+        <h2>Redes & Servidores en los que he trabajado</h2>
+        <p class="section-desc">Desde founder hasta desarrollador técnico y configurador de seguridad.</p>
+      </div>
+
+      <!-- UN SOLO GRID: todas las tarjetas son hermanas, ninguna dentro de otra -->
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="server" class="project-icon"></i>
+            <span class="status-pill status-closed">Cerrado</span>
+          </div>
+          <h3>troldercraft Network</h3>
+          <p class="project-role">Rango: Developer</p>
+          <p class="project-desc">Configuración general de modalidades, optimización de lag y sistemas de protección anticheat / ScreenShare.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="server" class="project-icon"></i>
+            <span class="status-pill status-dev">En desarrollo</span>
+          </div>
+          <h3>Astryx Network</h3>
+          <p class="project-role">Rango: Developer</p>
+          <p class="project-desc">Optimización de rendimiento y reducción de lag: Configuración avanzada de plugins, análisis de TPS, perfilado de rendimiento y ajuste fino de parámetros para garantizar una jugabilidad fluida.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="server" class="project-icon"></i>
+            <span class="status-pill status-closed">Cerrado</span>
+          </div>
+          <h3>wispMC Network</h3>
+          <p class="project-role">Rango: Manager</p>
+          <p class="project-desc">Gestión de equipo y planificación de actualizaciones: Coordinación general del staff, organización de eventos, manejo de prioridades y supervisión de la hoja de ruta del servidor.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="server" class="project-icon"></i>
+            <span class="status-pill status-closed">Cerrado</span>
+          </div>
+          <h3>minefly Network</h3>
+          <p class="project-role">Rango: Sr Admin</p>
+          <p class="project-desc">Administración general y control de moderación: Supervisión de la comunidad, gestión de permisos y rangos, resolución de conflictos y equilibrio de la economía in-game.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="server" class="project-icon"></i>
+            <span class="status-pill status-closed">Cerrado</span>
+          </div>
+          <h3>Valterx Network</h3>
+          <p class="project-role">Rango: Developer</p>
+          <p class="project-desc">Sistemas de protección anticheat y herramientas de ScreenShare: Implementación de medidas de seguridad, configuración de sistemas anti-trampas y desarrollo/gestión de protocolos de revisión técnica.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="gamepad-2" class="project-icon"></i>
+            <span class="status-pill status-closed">Cerrado</span>
+          </div>
+          <h3>SeaMc Network</h3>
+          <p class="project-role">Rango: Moderador</p>
+          <p class="project-desc">Gestión de sanciones y reportes, control de conflictos en el servidor y supervisión del cumplimiento de las normativas del servidor.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="gamepad-2" class="project-icon"></i>
+            <span class="status-pill status-online">Abierto</span>
+          </div>
+          <h3>Minesun Network</h3>
+          <p class="project-role">Rango: Jr Mod</p>
+          <p class="project-desc">Atención en el sistema de tickets, moderación activa del chat global y resolución de dudas frecuentes para los usuarios.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <i data-lucide="shield-check" class="project-icon"></i>
+            <span class="status-pill status-dev">En desarrollo</span>
+          </div>
+          <h3>VirexMC Network</h3>
+          <p class="project-role">Rango: Operador</p>
+          <p class="project-desc">Organización interna del staff, configuración de proxies de red y vinculación con Discord.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: RESEÑAS -->
+    <section id="resenas" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Opiniones</span>
+        <h2>Lo que dicen <span class="gradient-text">quienes me contrataron</span></h2>
+        <p class="section-desc">Valoraciones de clientes sobre configuraciones, plugins y bots entregados.</p>
+      </div>
+
+      <!-- Tarjeta especial para dejar reseña -->
+      <div class="action-banner">
+        <div class="action-info">
+          <h3>¿Trabajaste conmigo o te presté un servicio?</h3>
+          <p>Tu opinión es importante para seguir mejorando y brindar confianza a nuevos clientes.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openReviewModal()">
+          <i data-lucide="edit-3"></i> Dejar una reseña
+        </button>
+      </div>
+
+      <!-- Grid de Reseñas -->
+      <div class="reviews-grid" id="reviewsContainer">
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: ESTUDIO -->
+    <section id="estudio" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Estudio</span>
+        <h2>Raptor Core Estudio</h2>
+        <p class="section-desc">Programación, diseño y optimización profesional para comunidades.</p>
+      </div>
+
+      <div class="bento-card studio-hero-card">
+        <i data-lucide="cpu" class="studio-logo-icon"></i>
+        <h3>Servicios de Raptor core Estudio</h3>
+        <p>Aparte de mi trabajo personal, participo en un equipo enfocado en brindar soluciones completas.</p>
+
+        <div class="services-list">
+          <div class="service-tag"><i data-lucide="check"></i> Plugins a medida</div>
+          <div class="service-tag"><i data-lucide="check"></i> Bots de Discord personalizados</div>
+          <div class="service-tag"><i data-lucide="check"></i> Configuraciones de Redes</div>
+          <div class="service-tag"><i data-lucide="check"></i> Optimización de JVM y TPS</div>
+        </div>
+
+        <div class="studio-action">
+          <button class="btn btn-primary" onclick="switchTab('contacto')">
+            <i data-lucide="message-square"></i> Cotizar Servicio
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA: CONTACTO -->
+    <section id="contacto" class="tab-content">
+      <div class="section-header">
+        <span class="section-tag">Contacto</span>
+        <h2>Hablemos por <span class="gradient-text">Discord</span></h2>
+        <p class="section-desc">Para proyectos, configuraciones o cualquier duda, contáctame directamente.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="bento-card contact-box">
+          <i data-lucide="user-check" class="contact-icon"></i>
+          <h3>Discord Personal</h3>
+          <p>Para hablar directamente conmigo sobre pedidos personales.</p>
+          <div class="copy-field">
+            <span id="discordUser">Jwpxtrm</span>
+            <button class="btn btn-copy" onclick="copyDiscord()">
+              <i data-lucide="copy"></i> Copiar
+            </button>
+          </div>
+        </div>
+
+        <div class="bento-card contact-box">
+          <i data-lucide="users" class="contact-icon"></i>
+          <h3>Servidor del Estudio</h3>
+          <p>Para abrir tickets, ver el catálogo de servicios y recibir soporte técnico.</p>
+          <a href="https://discord.gg/2yrPQXJHFU" target="_blank" class="btn btn-secondary mt-2">
+            <i data-lucide="external-link"></i> Entrar al Servidor
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: DEJAR RESEÑA -->
+  <div id="reviewModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="message-square-plus"></i> Dejar una Reseña</h3>
+        <button class="modal-close" onclick="closeReviewModal()">&times;</button>
+      </div>
+      <form id="reviewForm" onsubmit="submitReview(event)">
+        <div class="form-group">
+          <label>Tu Nombre / Usuario de Discord:</label>
+          <input type="text" id="authorInput" placeholder="Ej: jwpXtrm" required>
+        </div>
+
+        <div class="form-group">
+          <label>Servicio Contratado:</label>
+          <input type="text" id="serviceInput" placeholder="Ej: Bot de Discord / Configuración de Minecraft" required>
+        </div>
+
+        <div class="form-group">
+          <label>Calificación:</label>
+          <select id="ratingInput">
+            <option value="★★★★★">★★★★★ (5 Estrellas)</option>
+            <option value="★★★★☆">★★★★☆ (4 Estrellas)</option>
+            <option value="★★★☆☆">★★★☆☆ (3 Estrellas)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tu Comentario:</label>
+          <textarea id="commentInput" rows="3" placeholder="Escribe aquí tu experiencia..." required></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Publicar Reseña</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 JwpXtrm. Todos los derechos reservados.</p>
+  </footer>
+
+  <div id="toast" class="toast">¡Texto copiado al portapapeles!</div>
+
+  <!-- 1. Script de Interfaz y Navegación (Estándar) -->
+  <script src="script.js"></script>
+
+  <!-- 2. Script de Firebase y Reseñas en Vivo (Módulo) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYmEGKfyMCfINPS0S9kuSjYZozxGHcWgE",
+      authDomain: "portafolio-jwpxtrm.firebaseapp.com",
+      projectId: "portafolio-jwpxtrm",
+      storageBucket: "portafolio-jwpxtrm.firebasestorage.app",
+      messagingSenderId: "578916510239",
+      appId: "1:578916510239:web:667290cafde6882d8e432a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const webhookURL = "TU_WEBHOOK_URL_DE_DISCORD"; // Reemplaza aquí con tu webhook si ya lo tienes
+
+    window.submitReview = async function(event) {
+      event.preventDefault();
+
+      const author = document.getElementById("authorInput").value;
+      const service = document.getElementById("serviceInput").value;
+      const rating = document.getElementById("ratingInput").value;
+      const comment = document.getElementById("commentInput").value;
+
+      try {
+        await addDoc(collection(db, "reviews"), {
+          name: author,
+          service: service,
+          rating: rating,
+          comment: comment,
+          date: new Date().toISOString()
+        });
+
+        if (webhookURL && webhookURL !== "TU_WEBHOOK_URL_DE_DISCORD") {
+          await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              content: `⭐ **Nueva Reseña Recibida**\n👤 **Autor:** ${author}\n🛠️ **Servicio:** ${service}\n🌟 **Calificación:** ${rating}\n💬 **Comentario:** ${comment}`
+            })
+          });
+        }
+
+        alert("¡Reseña publicada con éxito!");
+        document.getElementById("reviewForm").reset();
+        closeReviewModal();
+        loadReviews();
+      } catch (error) {
+        console.error("Error al enviar reseña:", error);
+        alert("Hubo un error al enviar la reseña.");
+      }
+    };
+
+    async function loadReviews() {
+      const container = document.getElementById("reviewsContainer");
+      if (!container) return;
+
+      container.innerHTML = "<p>Cargando reseñas...</p>";
+
+      try {
+        const q = query(collection(db, "reviews"), orderBy("date", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        container.innerHTML = "";
+        if (querySnapshot.empty) {
+          container.innerHTML = "<p class='no-reviews'>No hay reseñas todavía. ¡Sé el primero en dejar una!</p>";
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const card = document.createElement("div");
+          card.className = "review-card";
+          card.innerHTML = `
+            <div class="review-header-card">
+              <h4>${escapeHtml(data.name)}</h4>
+              <span class="review-stars">${data.rating}</span>
+            </div>
+            <p class="review-service">Servicio: <strong>${escapeHtml(data.service)}</strong></p>
+            <p class="review-text">"${escapeHtml(data.comment)}"</p>
+            <small class="review-date">${new Date(data.date).toLocaleDateString()}</small>
+          `;
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error("Error al cargar reseñas:", error);
+        container.innerHTML = "<p>Error al cargar las reseñas.</p>";
+      }
+    }
+
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    document.addEventListener("DOMContentLoaded", loadReviews);
+  </script>
+</body>
+</html>
